@@ -1,0 +1,37 @@
+@import '../../../styles/mixins.scss';
+
+.edit__category{
+    @include contentPrising();
+    min-height: 400px;
+    min-width: 800px;
+    background-color: rgb(106, 170, 167);
+    border: 1px solid rgb(128, 0, 21);
+    border-radius: 10px;
+    padding: 10px;
+    &-header{
+        @include flexSpaceBetween();
+    }
+    &-image{
+        cursor: pointer;
+    }
+    &-main{
+        width: 100%;
+    }
+    &-content{
+        display: flex;
+    }
+    &-right{
+        padding: 10px;
+        width: 100%;
+    }
+    &-input{
+        width: 100%;
+    }
+    &-text{
+        width: 100%;
+        min-height: 200px;
+    }
+    &-btn > button:nth-child(1){
+        margin-right: 10px;
+    }
+}

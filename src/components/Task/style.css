@@ -1,8 +1,0 @@
-.task {
-    width: 300px;
-    margin-top: 10px;
-}
-.task__item {
-    display: flex;
-    justify-content: space-between;
-}

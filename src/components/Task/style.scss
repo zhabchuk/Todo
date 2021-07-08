@@ -1,0 +1,41 @@
+@import '../../styles/mixins.scss';
+
+.task {
+    min-width: 300px;
+    margin-top: 10px;
+    &__item {
+        @include flexSpaceBetween();
+        word-break: break-all;
+    }
+    &__listgroup {
+        max-height: 300px;
+        overflow-y: scroll;
+    }
+    &__btn {
+        margin-bottom: 10px;
+    }
+    &__group-btn {
+        padding-top: 5px;
+    }
+    &__group-btn > button:nth-child(1) {
+        margin-right: 10px;
+    }
+    &__group-img {
+        @include flexSpaceBetween();
+    }
+    &__group-img > img:nth-child(1){
+        margin-right: 10px;
+    }
+    &__input {
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid rgb(128, 0, 21);
+    }
+    &__item {
+        cursor: pointer;
+        width: 100%;
+        height: 60px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+}

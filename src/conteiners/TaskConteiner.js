@@ -2,10 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Task } from '../components/Task';
-import { actionCreateTodo, actionDeleteTodo } from '../store/todos';
+import { actionShowModal } from '../store/modals';
+import { actionCreateTodo, actionRemoveAllTodos, actionSetTodosLocalStorage } from '../store/todos';
+import { getTodos } from '../store/todos/selectors';
 
 export default function TaskConteiner() {
-    const todos = useSelector(state => state.task);
+    const todos = useSelector((state) => getTodos(state));
 
     const [change, setChange] = useState('');
 
@@ -23,11 +25,42 @@ export default function TaskConteiner() {
         setChange('')
     };
 
-    const handlerDeleteTodo = (payload) => {
-        dispatch(actionDeleteTodo(payload))
-    }
+
+    const handlerDeleteTodo = (idTodo, titleTodo) => {
+        dispatch(actionShowModal({ name: 'ModalDelete', id: idTodo, title: titleTodo }))
+    };
+
+    const showModalEditTask = (taskId) => {
+        dispatch(actionShowModal({name: 'ModalEditTask', taskId }))
+    };
+
+    const saveTodoLocalStorage = () => {
+        window.localStorage.setItem('todos', JSON.stringify(todos))
+    };
+
+    const getTodoLocalStorage = () => {
+        const getTodo = window.localStorage.getItem('todos');
+        const { task } = JSON.parse(getTodo)
+        dispatch(actionSetTodosLocalStorage(task))
+    };
+
+    const componentDidMounte = () => {
+        getTodoLocalStorage()
+    };
+
+    const removeAllTodoLocalStorage = () => {
+        window.localStorage.removeItem('todos')
+        dispatch(actionRemoveAllTodos())
+    };
+
+
     return <Task
     todos={todos}
+    saveTodoLocalStorage={saveTodoLocalStorage}
+    componentDidMounte={componentDidMounte}
+    showModalEditTask={showModalEditTask}
+    getTodoLocalStorage={getTodoLocalStorage}
+    removeAllTodoLocalStorage={removeAllTodoLocalStorage}
     change={change}
     handlerChangeInput={handlerChangeInput}
     handlerAddTodo={handlerAddTodo}

@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -38,17 +39,18 @@
 }
 
 .App {
-  max-width: 600px;
+  max-width: 900px;
   margin: 0 auto;
-}
-.homePage {
-  max-width: 300px;
-}
-.header {
-  font-size: 30px;
-  text-align: center;
-  max-width: 600px;
-  height: 50px;
-  margin: 10px auto;
-  background-color: pink;
+     &__header {
+    font-size: 30px;
+    text-align: center;
+    max-width: 900px;
+    height: 50px;
+    margin: 10px auto;
+    background-color: pink;
+  }
+  &__header {
+    height: 80px;
+    border-radius: 10px;
+  }
 }
